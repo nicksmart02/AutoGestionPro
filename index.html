@@ -1122,7 +1122,30 @@ footer.copyright a:hover { text-decoration: underline }
   #page-reports { display: block !important }
   .rpt-grid { grid-template-columns: 1fr 1fr !important }
 }
+/* Règles CSS à ajouter à la fin de la section style, avant les fermetures */
+/* Protection contre les débordements de la topbar */
+.topbar .session-pill,
+.topbar #session-name,
+.topbar #session-role {
+  position: relative;
+  z-index: 100;
+}
 
+/* Styles spécifiques à la page voyages */
+#page-trips .sec-row:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#page-trips .stats-grid {
+  margin-top: 0.5rem;
+}
+
+/* S'assurer que le contenu des pages reste dans les pages */
+.page {
+  position: relative;
+  z-index: 1;
+}
 .hidden { display: none !important }
 </style>
 </head>
@@ -1461,53 +1484,56 @@ footer.copyright a:hover { text-decoration: underline }
       </div>
     </div><!-- /page-users -->
 
-    <!-- ═══════════ PAGE VOYAGES ═══════════ -->
-    <!-- ═══════════ PAGE VOYAGES ═══════════ (VERSION CORRIGÉE) -->
+   <!-- ═══════════ PAGE VOYAGES ═══════════ -->
 <div class="page" id="page-trips">
-  <!-- En-tête avec titre -->
-  <div class="sec-row" style="margin-bottom:0.5rem">
-    <div class="sec-title">Voyages</div>
-    <div style="font-size:.8rem;color:var(--ink-4);">Suivi des trajets et livraisons</div>
+  <!-- En-tête de page avec titre uniquement -->
+  <div class="sec-row" style="margin-bottom:1rem">
+    <h2 class="sec-title">Voyages</h2>
+    <span style="font-size:.8rem;color:var(--ink-4);">Suivi des trajets et livraisons</span>
   </div>
   
-  <!-- Statistiques - maintenant dans un conteneur propre -->
+  <!-- Cartes statistiques -->
   <div class="stats-grid" style="margin-bottom:1.5rem">
     <div class="stat-card">
-      <div class="stat-val" id="trip-stat-total">—</div>
+      <div class="stat-val" id="trip-stat-total">0</div>
       <div class="stat-lbl">Total voyages</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val" id="trip-stat-progress" style="color:var(--amber)">—</div>
+      <div class="stat-val" id="trip-stat-progress" style="color:var(--amber)">0</div>
       <div class="stat-lbl">En cours</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val" id="trip-stat-done" style="color:var(--sage-mid)">—</div>
+      <div class="stat-val" id="trip-stat-done" style="color:var(--sage-mid)">0</div>
       <div class="stat-lbl">Terminés</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val" id="trip-stat-revenue" style="color:var(--sage)">—</div>
+      <div class="stat-val" id="trip-stat-revenue" style="color:var(--sage)">0 FCFA</div>
       <div class="stat-lbl">Fret total</div>
     </div>
   </div>
   
-  <!-- Tableau des voyages - comme dans la page Journal mais en version tableau -->
+  <!-- Tableau des voyages -->
   <div class="tbl-card">
     <table>
       <thead>
         <tr>
           <th>N°</th>
-          <th>Départ</th>
-          <th>Destination</th>
-          <th>Chauffeur</th>
-          <th>Camion</th>
-          <th>Date départ</th>
-          <th>Statut</th>
-          <th>Fret</th>
+          <th>DÉPART</th>
+          <th>DESTINATION</th>
+          <th>CHAUFFEUR</th>
+          <th>CAMION</th>
+          <th>DATE DÉPART</th>
+          <th>STATUT</th>
+          <th>FRET</th>
           <th></th>
         </tr>
       </thead>
       <tbody id="trip-tbody">
-        <tr><td colspan="9"><div class="loading"><div class="spin"></div></div></td></tr>
+        <tr>
+          <td colspan="9" style="text-align:center;padding:2rem;color:var(--ink-4)">
+            Aucun voyage enregistré
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -2105,7 +2131,101 @@ function showLogin() {
   if (err) err.classList.remove('show');
   setScreen('login');
 }
-
+// ══════════ VOYAGES ══════════
+async function loadTrips() {
+  console.log("Chargement des voyages...");
+  
+  try {
+    const { data: trips, error } = await sb
+      .from('trips')
+      .select('*, drivers(full_name), trucks(plate)')
+      .order('created_at', { ascending: false });
+    
+    if (error) {
+      console.error("Erreur chargement voyages:", error);
+      return;
+    }
+    
+    console.log("Voyages chargés:", trips);
+    
+    // Mise à jour des statistiques
+    const total = trips?.length || 0;
+    const inProgress = trips?.filter(t => t.status === 'in_progress').length || 0;
+    const completed = trips?.filter(t => t.status === 'completed').length || 0;
+    const revenue = trips?.reduce((sum, t) => sum + (Number(t.freight_amount) || 0), 0) || 0;
+    
+    // Mettre à jour les éléments du DOM
+    const statTotal = document.getElementById('trip-stat-total');
+    const statProgress = document.getElementById('trip-stat-progress');
+    const statDone = document.getElementById('trip-stat-done');
+    const statRevenue = document.getElementById('trip-stat-revenue');
+    
+    if (statTotal) statTotal.textContent = total;
+    if (statProgress) statProgress.textContent = inProgress;
+    if (statDone) statDone.textContent = completed;
+    if (statRevenue) statRevenue.textContent = revenue ? revenue.toLocaleString('fr-FR') + ' FCFA' : '0 FCFA';
+    
+    // Mise à jour du tableau
+    const tbody = document.getElementById('trip-tbody');
+    if (!tbody) return;
+    
+    if (!trips || trips.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="9" style="text-align:center;padding:2rem;color:var(--ink-4)">
+            Aucun voyage enregistré
+          </td>
+        </tr>
+      `;
+      return;
+    }
+    
+    const statusMap = {
+      'planned': { text: '🗓️ Planifié', color: 'var(--ink-3)' },
+      'in_progress': { text: '🚛 En cours', color: 'var(--amber)' },
+      'completed': { text: '✅ Terminé', color: 'var(--sage-mid)' },
+      'cancelled': { text: '❌ Annulé', color: 'var(--plum)' }
+    };
+    
+    tbody.innerHTML = trips.map(trip => {
+      const status = statusMap[trip.status] || { text: trip.status, color: 'var(--ink-4)' };
+      return `
+        <tr>
+          <td><span class="mono-cell" style="font-size:.78rem">${trip.trip_number || '—'}</span></td>
+          <td>${trip.departure_location || '—'}</td>
+          <td>${trip.arrival_location || '—'}</td>
+          <td>${trip.drivers?.full_name || '—'}</td>
+          <td><span class="mono-cell">${trip.trucks?.plate || '—'}</span></td>
+          <td>${trip.departure_date ? new Date(trip.departure_date).toLocaleDateString('fr-FR') : '—'}</td>
+          <td><span style="color:${status.color};font-weight:600">${status.text}</span></td>
+          <td style="font-weight:600;color:var(--sage)">${trip.freight_amount ? Number(trip.freight_amount).toLocaleString('fr-FR') + ' FCFA' : '—'}</td>
+          <td>
+            <div class="tbl-acts">
+              <button class="btn btn-secondary btn-xs" onclick="viewTrip('${trip.id}')">
+                <i data-lucide="eye" width="12" height="12"></i>
+              </button>
+              <button class="btn btn-secondary btn-xs" onclick="openEditTrip('${trip.id}')">
+                <i data-lucide="pencil" width="12" height="12"></i>
+              </button>
+              <button class="btn btn-xs" style="background:#FEE2E2;color:var(--terracotta)" onclick="deleteTrip('${trip.id}')">
+                <i data-lucide="trash-2" width="12" height="12"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+    
+    // Réinitialiser les icônes Lucide
+    if (typeof lucide !== 'undefined' && lucide.createIcons) {
+      lucide.createIcons();
+    }
+    
+  } catch (error) {
+    console.error("Erreur dans loadTrips:", error);
+  }
+}
+   
 function showApp() {
   // Remplir les infos session
   try {
