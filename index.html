@@ -1462,21 +1462,56 @@ footer.copyright a:hover { text-decoration: underline }
     </div><!-- /page-users -->
 
     <!-- ═══════════ PAGE VOYAGES ═══════════ -->
-    <div class="page" id="page-trips">
-      <div class="sec-row">
-        <div><div class="sec-title">Voyages</div><div style="font-size:.8rem;color:var(--ink-4);margin-top:.2rem">Suivi des trajets et livraisons</div></div>
-      </div>
-      <div class="stats-grid" style="margin-bottom:1.25rem">
-        <div class="stat-card"><div class="stat-val" id="trip-stat-total">—</div><div class="stat-lbl">Total voyages</div></div>
-        <div class="stat-card"><div class="stat-val" id="trip-stat-progress" style="color:var(--amber)">—</div><div class="stat-lbl">En cours</div></div>
-        <div class="stat-card"><div class="stat-val" id="trip-stat-done" style="color:var(--sage-mid)">—</div><div class="stat-lbl">Terminés</div></div>
-        <div class="stat-card"><div class="stat-val" id="trip-stat-revenue" style="color:var(--sage)">—</div><div class="stat-lbl">Fret total</div></div>
-      </div>
-      <div class="tbl-card">
-        <table><thead><tr><th>N°</th><th>Départ</th><th>Destination</th><th>Chauffeur</th><th>Camion</th><th>Date départ</th><th>Statut</th><th>Fret</th><th></th></tr></thead>
-        <tbody id="trip-tbody"><tr><td colspan="9"><div class="loading"><div class="spin"></div></div></td></tr></tbody></table>
-      </div>
+    <!-- ═══════════ PAGE VOYAGES ═══════════ (VERSION CORRIGÉE) -->
+<div class="page" id="page-trips">
+  <!-- En-tête avec titre -->
+  <div class="sec-row" style="margin-bottom:0.5rem">
+    <div class="sec-title">Voyages</div>
+    <div style="font-size:.8rem;color:var(--ink-4);">Suivi des trajets et livraisons</div>
+  </div>
+  
+  <!-- Statistiques - maintenant dans un conteneur propre -->
+  <div class="stats-grid" style="margin-bottom:1.5rem">
+    <div class="stat-card">
+      <div class="stat-val" id="trip-stat-total">—</div>
+      <div class="stat-lbl">Total voyages</div>
     </div>
+    <div class="stat-card">
+      <div class="stat-val" id="trip-stat-progress" style="color:var(--amber)">—</div>
+      <div class="stat-lbl">En cours</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" id="trip-stat-done" style="color:var(--sage-mid)">—</div>
+      <div class="stat-lbl">Terminés</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" id="trip-stat-revenue" style="color:var(--sage)">—</div>
+      <div class="stat-lbl">Fret total</div>
+    </div>
+  </div>
+  
+  <!-- Tableau des voyages - comme dans la page Journal mais en version tableau -->
+  <div class="tbl-card">
+    <table>
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Départ</th>
+          <th>Destination</th>
+          <th>Chauffeur</th>
+          <th>Camion</th>
+          <th>Date départ</th>
+          <th>Statut</th>
+          <th>Fret</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="trip-tbody">
+        <tr><td colspan="9"><div class="loading"><div class="spin"></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
     <!-- ═══════════ PAGE CHAUFFEURS ═══════════ -->
     <div class="page" id="page-drivers">
