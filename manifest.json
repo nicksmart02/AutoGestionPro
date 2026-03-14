@@ -1,0 +1,70 @@
+{
+  "name": "AutoGarage Pro",
+  "short_name": "AutoGarage",
+  "description": "Application de gestion de garage et transport — véhicules, voyages, chauffeurs, dépenses.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F0F4F3",
+  "theme_color": "#2D6A4F",
+  "lang": "fr",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjQwIiBmaWxsPSIjMUY1MDNFIi8+PHBhdGggZD0iTTI0IDEyMEwyNCA5OCBMNTAgNjUgTDE0MiA2NSBMMTcwIDk4IEwxNzIgMTIwIFoiIGZpbGw9IiM0MEExNkMiLz48cGF0aCBkPSJNNTggNjUgTDY5IDQwIEwxMjIgNDAgTDEzNCA2NSBaIiBmaWxsPSIjRDhGM0RDIi8+PGNpcmNsZSBjeD0iNTgiIGN5PSIxMjciIHI9IjIwIiBmaWxsPSIjMTIyMDFBIi8+PGNpcmNsZSBjeD0iNTgiIGN5PSIxMjciIHI9IjEwIiBmaWxsPSIjOUU5NTg5Ii8+PGNpcmNsZSBjeD0iMTM0IiBjeT0iMTI3IiByPSIyMCIgZmlsbD0iIzEyMjAxQSIvPjxjaXJjbGUgY3g9IjEzNCIgY3k9IjEyNyIgcj0iMTAiIGZpbGw9IiM5RTk1ODkiLz48cGF0aCBkPSJNNjUgNjUgTDc1IDQ4IEwxMTggNDggTDEyOCA2NSBaIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjUpIi8+PHJlY3QgeD0iMjgiIHk9IjEwNiIgd2lkdGg9IjEzNiIgaGVpZ2h0PSI4IiByeD0iMyIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEyKSIvPjxyZWN0IHg9IjI0IiB5PSI5NCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjEyIiByeD0iNiIgZmlsbD0iI0ZGRjlDNCIvPjxyZWN0IHg9IjE0OCIgeT0iOTQiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMiIgcng9IjYiIGZpbGw9IiNGRkY5QzQiLz48L3N2Zz4=",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEwOCIgZmlsbD0iIzFGNTAzRSIvPjxwYXRoIGQ9Ik02NCAzMjBMNjQgMjYyIEwxMzQgMTcwIEwzNzggMTcwIEw0NTYgMjYyIEw0NjAgMzIwIFoiIGZpbGw9IiM0MEExNkMiLz48cGF0aCBkPSJNMTU0IDE3MCBMMTg2IDEwNSBMMzI0IDEwNSBMMzU0IDE3MCBaIiBmaWxsPSIjRDhGM0RDIi8+PGNpcmNsZSBjeD0iMTU2IiBjeT0iMzM4IiByPSI1MiIgZmlsbD0iIzEyMjAxQSIvPjxjaXJjbGUgY3g9IjE1NiIgY3k9IjMzOCIgcj0iMjYiIGZpbGw9IiM5RTk1ODkiLz48Y2lyY2xlIGN4PSIzNTYiIGN5PSIzMzgiIHI9IjUyIiBmaWxsPSIjMTIyMDFBIi8+PGNpcmNsZSBjeD0iMzU2IiBjeT0iMzM4IiByPSIyNiIgZmlsbD0iIzlFOTU4OSIvPjxwYXRoIGQ9Ik0xNzQgMTcwIEwyMDAgMTI1IEwzMTIgMTI1IEwzMzYgMTcwIFoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4yNSkiLz48cmVjdCB4PSI3MCIgeT0iMjgwIiB3aWR0aD0iMzY0IiBoZWlnaHQ9IjIwIiByeD0iOCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEyKSIvPjxyZWN0IHg9IjY0IiB5PSIyNTAiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzMiIgcng9IjE0IiBmaWxsPSIjRkZGOUM0Ii8+PHJlY3QgeD0iMzkyIiB5PSIyNTAiIHdpZHRoPSI1NiIgaGVpZ2h0PSIzMiIgcng9IjE0IiBmaWxsPSIjRkZGOUM0Ii8+PC9zdmc+",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Véhicules",
+      "short_name": "Véhicules",
+      "description": "Gérer les véhicules",
+      "url": "/?page=vehicles",
+      "icons": [{ "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='20' fill='%232D6A4F'/%3E%3Ctext x='48' y='65' text-anchor='middle' font-size='52' fill='white'%3E🚗%3C/text%3E%3C/svg%3E", "sizes": "96x96" }]
+    },
+    {
+      "name": "Voyages",
+      "short_name": "Voyages",
+      "description": "Gérer les voyages",
+      "url": "/?page=trips",
+      "icons": [{ "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='20' fill='%232D6A4F'/%3E%3Ctext x='48' y='65' text-anchor='middle' font-size='52' fill='white'%3E🗺️%3C/text%3E%3C/svg%3E", "sizes": "96x96" }]
+    },
+    {
+      "name": "Dépenses",
+      "short_name": "Dépenses",
+      "description": "Gérer les dépenses",
+      "url": "/?page=expenses",
+      "icons": [{ "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='20' fill='%232D6A4F'/%3E%3Ctext x='48' y='65' text-anchor='middle' font-size='52' fill='white'%3E💰%3C/text%3E%3C/svg%3E", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 390 844'%3E%3Crect width='390' height='844' fill='%23F0F4F3'/%3E%3Crect x='0' y='0' width='390' height='70' fill='%231B4332'/%3E%3Ctext x='20' y='44' font-size='20' fill='white' font-weight='bold'%3EAutoGarage Pro%3C/text%3E%3C/svg%3E",
+      "sizes": "390x844",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "AutoGarage Pro — Dashboard mobile"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 800'%3E%3Crect width='1280' height='800' fill='%23F0F4F3'/%3E%3Crect x='0' y='0' width='252' height='800' fill='%231B4332'/%3E%3Ctext x='126' y='44' text-anchor='middle' font-size='18' fill='white' font-weight='bold'%3EAutoGarage Pro%3C/text%3E%3C/svg%3E",
+      "sizes": "1280x800",
+      "type": "image/svg+xml",
+      "form_factor": "wide",
+      "label": "AutoGarage Pro — Dashboard desktop"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": { "preferred_width": 400 }
+}
